@@ -4,6 +4,12 @@ import z from 'zod';
 
 import { sendMail } from './Tools/SendMail.js';
 
+const model = process.env.MODEL
+
+if (!model) {
+    throw new Error('MODEL is not defined');
+}
+
 const weatherTool = tool({
     name: 'get_weather',
     description: 'return the current weather for a given location',
@@ -40,7 +46,7 @@ const sendMailTool = tool({
 const agent = new Agent({
     name: 'Weather Agent',
     instructions: `You provide weather info and can send email when requested.`,
-    model: "gpt-4.1-mini",
+    model: model,
     tools: [weatherTool, sendMailTool]
 });
 
