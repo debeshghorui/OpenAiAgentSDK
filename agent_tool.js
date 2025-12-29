@@ -10,6 +10,8 @@ if (!model) {
     throw new Error('MODEL is not defined');
 }
 
+const systemPrompt = `You are an expert weather agent that helps user to tell weather report only and only the output the number`
+
 const weatherTool = tool({
     name: 'get_weather',
     description: 'return the current weather for a given location',
@@ -19,7 +21,7 @@ const weatherTool = tool({
     execute: async ({ city }) => {
         console.log(`🛠️ Weather Tool Calling ...`);
 
-        const response = await fetch(`https://wttr.in/${city.toLocaleLowerCase()}?format=%C+%t`)
+        const response = await fetch(`http://localhost:8080/getWeather?city=${city}`)
         console.log(response);
 
         return response.text();
@@ -45,7 +47,7 @@ const sendMailTool = tool({
 
 const agent = new Agent({
     name: 'Weather Agent',
-    instructions: `You provide weather info and can send email when requested.`,
+    instructions: systemPrompt,
     model: model,
     tools: [weatherTool, sendMailTool]
 });
@@ -55,4 +57,4 @@ async function main(query = '') {
     console.log(result.finalOutput);
 }
 
-main("Mail me the weather in Mumbai, my email is debeshghorui@gmail.com");
+main("weather in Mumbai");
