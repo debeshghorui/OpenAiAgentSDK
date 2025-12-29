@@ -11,7 +11,7 @@ const weatherTool = tool({
     execute: async ({ city }) => {
         console.log(`🛠️ Weather Tool Calling ...`);
 
-        const response = await fetch(`https://wttr.in/${city.toLocaleLowerCase()}?format=%C+%t`)
+        const response = await fetch(`http://localhost:8080/getWeather?city=${city}`)
         console.log(response);
 
         return response.text();
@@ -39,4 +39,4 @@ async function main(query = '') {
     console.log(result.finalOutput);
 }
 
-main("Mail me the weather in Mumbai, my email is debeshghorui@gmail.com");
+main("weather in Mumbai");
