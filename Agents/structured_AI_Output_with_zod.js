@@ -29,7 +29,7 @@ const GetWeatherSchema = z.object({
 const agent = new Agent({
     name: 'Weather Agent',
     instructions: `You provide weather info and can send email when requested.`,
-    model: "gpt-4.1-mini",
+    model: module,
     tools: [weatherTool],
     outputType: GetWeatherSchema
 });
