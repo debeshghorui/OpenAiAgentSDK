@@ -1,6 +1,4 @@
-# [OpenAI Agents SDK](https://openai.github.io/openai-agents-js/)
-
-## [Agents](https://openai.github.io/openai-agents-js/guides/agents/#_top)
+# [Agents](https://openai.github.io/openai-agents-js/guides/agents/#_top)
 
 Agents are the main building‑block of the OpenAI Agents SDK. An Agent is a Large Language Model (LLM) that has been configured with:
 
@@ -22,7 +20,7 @@ const agent = new Agent({
 
 The rest of this page walks through every Agent feature in more detail.
 
-### [Cloning / Copying agents](https://openai.github.io/openai-agents-js/guides/agents/#cloning-copying-agents)
+## [Cloning / Copying agents](https://openai.github.io/openai-agents-js/guides/agents/#cloning-copying-agents)
 
 Need a slightly modified version of an existing agent? Use the clone() method, which returns an entirely new Agent instance.
 
@@ -41,7 +39,7 @@ const robotAgent = pirateAgent.clone({
 });
 ```
 
-### Forcing tool use
+## Forcing tool use
 
 Supplying tools doesn’t guarantee the LLM will call one. You can force tool use with `modelSettings.tool_choice`:
 
@@ -71,7 +69,7 @@ const agent = new Agent({
 });
 ```
 
-### Preventing infinite loops
+## Preventing infinite loops
 
 After a tool call the SDK automatically resets `tool_choice` back to `'auto'`. This prevents the model from entering an infinite loop where it repeatedly tries to call the tool. You can override this behavior via the `resetToolChoice` flag or by configuring `toolUseBehavior`:
 
